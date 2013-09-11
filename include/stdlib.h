@@ -54,6 +54,9 @@ int system (const char *);
 
 void *bsearch (const void *, const void *, size_t, size_t, int (*)(const void *, const void *));
 void qsort (void *, size_t, size_t, int (*)(const void *, const void *));
+#ifdef _GNU_SOURCE
+void qsort_r (void *, size_t, size_t, int (*)(const void *, const void *, void *), void *);
+#endif
 
 int abs (int);
 long labs (long);
