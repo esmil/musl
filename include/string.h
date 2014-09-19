@@ -86,6 +86,13 @@ size_t strlcpy (char *, const char *, size_t);
 
 #ifdef _GNU_SOURCE
 #define	strdupa(x)	strcpy(alloca(strlen(x)+1),x)
+#define	strndupa(x, l)	({ \
+	const char *__old = (x); \
+	size_t __len = strnlen(__old, (l)); \
+	char *__new = (char *)alloca(__len + 1); \
+	__new[__len] = '\0'; \
+	(char *)memcpy(__new, __old, __len); \
+})
 int strverscmp (const char *, const char *);
 int strcasecmp_l (const char *, const char *, locale_t);
 int strncasecmp_l (const char *, const char *, size_t, locale_t);
